@@ -162,7 +162,7 @@ stdenv.mkDerivation (finalAttrs: rec {
     chmod +x configure
     popd
   '' + lib.optionalString (lib.versionAtLeast version "115") ''
-    patchShebangs $PWD/build/cargo-linker
+    patchShebangs build/cargo-linker
   '' + ''
     # We can't build in js/src/, so create a build dir
     mkdir obj
