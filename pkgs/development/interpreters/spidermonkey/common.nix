@@ -156,11 +156,13 @@ stdenv.mkDerivation (finalAttrs: rec {
     export AWK=awk
     export AS=$CC
     export AC_MACRODIR=$PWD/build/autoconf/
-
+  '' + lib.optionalString (lib.versionAtLeast version "91" && lib.versionOlder version "115") ''
     pushd js/src
     sh ../../build/autoconf/autoconf.sh --localdir=$PWD configure.in > configure
     chmod +x configure
     popd
+  '' + lib.optionalString (lib.versionAtLeast version "115") ''
+    patchShebangs $PWD/build/cargo-linker
   '' + ''
     # We can't build in js/src/, so create a build dir
     mkdir obj
