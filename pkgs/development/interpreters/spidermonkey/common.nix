@@ -156,6 +156,7 @@ stdenv.mkDerivation (finalAttrs: rec {
     export AWK=awk
     export AS=$CC
     export AC_MACRODIR=$PWD/build/autoconf/
+
   '' + lib.optionalString (lib.versionAtLeast version "91" && lib.versionOlder version "115") ''
     pushd js/src
     sh ../../build/autoconf/autoconf.sh --localdir=$PWD configure.in > configure
