@@ -68,13 +68,16 @@ stdenv.mkDerivation (finalAttrs: {
       sha256 = "/npUE3idMSTVlFptsDpZmGWjZ/d2gqruVlJKq4eF4xU=";
     })
 
-    # Remove keybinding support for window shading.
+    # Remove support for window shading.
     # The corresponding key was removed in gsettings-desktop-schemas 45.alpha.
     # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2884
+    #
+    # Fetch the patch from magpie as they share same code base and this feature
+    # is never supported on wayland (note that magpie 0.9.x won't support wayland).
+    # https://github.com/BuddiesOfBudgie/magpie/issues/9
     (fetchpatch {
-      url = "https://gitlab.gnome.org/GNOME/mutter/-/commit/b521747d8156777f68d2b7453929c8b978312dac.patch";
-      includes = [ "src/core/keybindings.c" ];
-      sha256 = "HNJzCCGEHwhhhDW8+cFEbZmSDD/bz0xjq/lh2aI/xc4=";
+      url = "https://github.com/BuddiesOfBudgie/magpie/commit/4177c466375462ca8ed8fdb60913df4422f19144.patch";
+      sha256 = "NVx40WDnlUL050D529KVohvNBdVrheXxmJ73U3+KSeQ=";
     })
   ];
 
