@@ -474,7 +474,6 @@ in
         utils.removePackagesByName
           ([
             baobab
-            eog
             epiphany
             pkgs.gnome-text-editor
             gnome-calculator
@@ -490,6 +489,7 @@ in
             pkgs.gnome-photos
             gnome-system-monitor
             gnome-weather
+            pkgs.loupe
             nautilus
             pkgs.gnome-connections
             simple-scan
