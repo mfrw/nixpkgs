@@ -15,7 +15,7 @@ buildGoModule rec {
   subPackages = [ "." ];
 
   postPatch = ''
-    substituteInPlace honk.go --replace \
+    substituteInPlace main.go --replace \
       "var viewDir = \".\"" \
       "var viewDir = \"$out/share/honk\""
   '';
