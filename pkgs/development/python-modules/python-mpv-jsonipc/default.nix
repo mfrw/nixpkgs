@@ -2,9 +2,11 @@
   lib,
   buildPythonPackage,
   fetchFromGitHub,
+  mpv,
   setuptools,
+  stdenvNoCC,
+  unittestCheckHook,
 }:
-
 buildPythonPackage (finalAttrs: {
   pname = "python-mpv-jsonipc";
   version = "1.5.0";
@@ -19,8 +21,14 @@ buildPythonPackage (finalAttrs: {
 
   build-system = [ setuptools ];
 
-  # 'mpv-jsonipc' does not have any tests
-  doCheck = false;
+  nativeCheckInputs = [ unittestCheckHook ] ++ lib.optional (!stdenvNoCC.hostPlatform.isDarwin) mpv;
+
+  unittestFlags = [
+    "--start-directory=tests"
+    "--verbose"
+  ];
+
+  env.REQUIRE_MPV = !stdenvNoCC.hostPlatform.isDarwin;
 
   pythonImportsCheck = [ "python_mpv_jsonipc" ];
 
