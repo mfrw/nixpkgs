@@ -2411,6 +2411,8 @@ self: super: with self; {
 
   better-exceptions = callPackage ../development/python-modules/better-exceptions { };
 
+  better-optimize = callPackage ../development/python-modules/better-optimize { };
+
   betterproto = callPackage ../development/python-modules/betterproto { };
 
   betterproto-rust-codec = callPackage ../development/python-modules/betterproto-rust-codec { };
