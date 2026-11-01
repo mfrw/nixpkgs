@@ -46,6 +46,8 @@ stdenv.mkDerivation (finalAttrs: {
     zopfli
   ];
 
+  strictDeps = true;
+
   buildFlags = [ "LIBS=-lzopfli -lstdc++ -lz" ];
 
   makeFlags = [ "CC=${stdenv.cc.targetPrefix}c++" ];
