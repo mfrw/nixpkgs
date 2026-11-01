@@ -46,9 +46,7 @@ stdenv.mkDerivation (finalAttrs: {
     zopfli
   ];
 
-  preBuild = ''
-    buildFlagsArray+=("LIBS=-lzopfli -lstdc++ -lz")
-  '';
+  buildFlags = [ "LIBS=-lzopfli -lstdc++ -lz" ];
 
   makeFlags = [ "CC=${stdenv.cc.targetPrefix}c++" ];
 
@@ -59,6 +57,8 @@ stdenv.mkDerivation (finalAttrs: {
     install -Dm755 gif2apng $out/bin/gif2apng
     runHook postInstall
   '';
+
+  __structuredAttrs = true;
 
   meta = {
     homepage = "https://gif2apng.sourceforge.net/";
